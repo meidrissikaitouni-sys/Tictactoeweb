@@ -2,6 +2,8 @@
 
 Jeu de morpion en C avec interface graphique Raylib et une IA Minimax.
 
+Le depot GitHub est public et le contenu principal est bien publie.
+
 ## Prerequis
 
 - GCC
@@ -23,9 +25,57 @@ gcc -Wall -Wextra -std=c11 -O2 .\Main.c .\Game.c .\Render.c .\Ai.c -o .\tictacto
 .\tictactoe.exe
 ```
 
+## GitHub Actions
+
+Le depot contient un workflow GitHub Actions qui :
+
+- compile le projet automatiquement sur Windows a chaque push sur `main`
+- compile aussi sur chaque pull request
+- genere une archive de release Windows sur chaque tag de type `v*`
+
+## Release Windows
+
+### Creer une release localement
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\package-release.ps1 -Version v1.0.0
+```
+
+Cela produit :
+
+- `dist\TicTacToe-Windows-v1.0.0\`
+- `dist\TicTacToe-Windows-v1.0.0.zip`
+
+### Publier une release via GitHub
+
+Apres commit des changements, cree puis pousse un tag :
+
+```powershell
+git tag v1.0.0
+git push origin main
+git push origin v1.0.0
+```
+
+Le workflow GitHub va compiler le jeu, creer une archive ZIP Windows, puis publier une release GitHub automatiquement.
+
+### Installer la version release
+
+- telecharger le ZIP depuis la page Releases GitHub
+- extraire le contenu dans un dossier
+- conserver `tictactoe.exe` et `libraylib.dll` dans le meme dossier
+- lancer `tictactoe.exe`
+
 ## Fichiers sources
 
 - Main.c
 - Game.c / Game.h
 - Render.c / Render.h
 - Ai.c / Ai.h
+
+## Distribution
+
+Le package Windows distribue contient :
+
+- `tictactoe.exe`
+- `libraylib.dll`
+- `README.md`

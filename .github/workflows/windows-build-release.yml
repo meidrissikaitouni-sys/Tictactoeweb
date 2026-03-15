@@ -1,0 +1,65 @@
+name: Windows Build and Release
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - "v*"
+  pull_request:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: msys2 {0}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup MSYS2
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: true
+          install: >-
+            mingw-w64-x86_64-gcc
+            mingw-w64-x86_64-raylib
+
+      - name: Build executable
+        run: |
+          gcc -Wall -Wextra -std=c11 -O2 \
+            Main.c Game.c Render.c Ai.c \
+            -o tictactoe.exe \
+            -I/mingw64/include \
+            -L/mingw64/lib \
+            -lraylib -lopengl32 -lgdi32 -lwinmm
+
+      - name: Prepare artifact directory
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force dist\artifact | Out-Null
+          Copy-Item tictactoe.exe dist\artifact\
+          Copy-Item C:\msys64\mingw64\bin\libraylib.dll dist\artifact\
+          Copy-Item README.md dist\artifact\
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: tictactoe-windows
+          path: dist/artifact
+
+      - name: Create release archive
+        if: startsWith(github.ref, 'refs/tags/v')
+        shell: pwsh
+        run: |
+          Compress-Archive -Path dist\artifact\* -DestinationPath dist\TicTacToe-Windows-${{ github.ref_name }}.zip -Force
+
+      - name: Publish GitHub release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/TicTacToe-Windows-${{ github.ref_name }}.zip
+          generate_release_notes: true
