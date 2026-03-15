@@ -193,6 +193,12 @@ function render() {
     cell.textContent = state.board[i];
     cell.disabled = Boolean(state.board[i]) || state.gameOver || isAiPlayer(state.current);
 
+    if (state.board[i] === "X") {
+      cell.classList.add("mark-x");
+    } else if (state.board[i] === "O") {
+      cell.classList.add("mark-o");
+    }
+
     if (state.winningLine && state.winningLine.includes(i)) {
       cell.classList.add("win");
     }

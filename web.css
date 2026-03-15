@@ -10,6 +10,8 @@
   --cell: #10213d;
   --cell-hover: #16315f;
   --win: #ffd76a;
+  --mark-x: #ff4d5a;
+  --mark-o: #ffd74a;
 }
 
 * {
@@ -205,6 +207,14 @@ select {
 .cell:disabled {
   cursor: not-allowed;
   opacity: 0.88;
+}
+
+.cell.mark-x {
+  color: var(--mark-x);
+}
+
+.cell.mark-o {
+  color: var(--mark-o);
 }
 
 .cell.win {
