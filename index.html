@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tic Tac Toe Web</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Bricolage+Grotesque:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="web.css">
+</head>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <main class="app-shell">
+    <header class="hero">
+      <p class="eyebrow">Tic Tac Toe</p>
+      <h1>Web Arena</h1>
+      <p class="subtitle">Version navigateur avec IA, tout en gardant la version desktop en .exe.</p>
+    </header>
+
+    <section class="panel controls" aria-label="Parametres de partie">
+      <div class="mode-wrap">
+        <label for="mode">Mode</label>
+        <select id="mode">
+          <option value="human-ai">Joueur vs IA</option>
+          <option value="ai-human">IA vs Joueur</option>
+          <option value="human-human">Joueur vs Joueur</option>
+        </select>
+      </div>
+
+      <div class="mode-wrap">
+        <label for="difficulty">Difficulte IA</label>
+        <select id="difficulty">
+          <option value="easy">Facile</option>
+          <option value="hard" selected>Difficile (Minimax)</option>
+        </select>
+      </div>
+
+      <div class="control-row">
+        <button id="newGameBtn" class="btn btn-primary">Nouvelle partie</button>
+        <button id="resetScoreBtn" class="btn btn-ghost">Reset score</button>
+      </div>
+    </section>
+
+    <section class="panel status-panel" aria-live="polite">
+      <p id="statusText">Preparation de la partie...</p>
+      <div class="score-grid">
+        <article>
+          <h2>X</h2>
+          <p id="scoreX">0</p>
+        </article>
+        <article>
+          <h2>Nuls</h2>
+          <p id="scoreDraw">0</p>
+        </article>
+        <article>
+          <h2>O</h2>
+          <p id="scoreO">0</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="board-wrap" aria-label="Plateau Tic Tac Toe">
+      <div id="board" class="board" role="grid"></div>
+    </section>
+  </main>
+
+  <script src="web.js"></script>
+</body>
+</html>

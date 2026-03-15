@@ -2,6 +2,11 @@
 
 Jeu de morpion en C avec interface graphique Raylib et une IA Minimax.
 
+Ce depot contient maintenant deux versions :
+
+- Desktop (C + Raylib) pour generer `tictactoe.exe`
+- Web (HTML/CSS/JS) deployable sur Vercel
+
 Le depot GitHub est public et le contenu principal est bien publie.
 
 ## Prerequis
@@ -24,6 +29,29 @@ gcc -Wall -Wextra -std=c11 -O2 .\Main.c .\Game.c .\Render.c .\Ai.c -o .\tictacto
 ```powershell
 .\tictactoe.exe
 ```
+
+## Version Web (Vercel)
+
+La version web est a la racine du projet :
+
+- `index.html`
+- `web.css`
+- `web.js`
+- `vercel.json`
+
+### Lancer localement la version web
+
+Tu peux simplement ouvrir `index.html` dans ton navigateur.
+
+### Deployer sur Vercel
+
+1. Importer le repo GitHub dans Vercel
+2. Garder les options par defaut (pas de build special requis)
+3. Deploy
+
+La configuration `vercel.json` sert automatiquement `index.html`.
+
+La version desktop `.exe` reste intacte et continue de se compiler comme avant.
 
 ## GitHub Actions
 
