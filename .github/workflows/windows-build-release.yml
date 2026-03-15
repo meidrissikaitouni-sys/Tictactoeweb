@@ -1,5 +1,8 @@
 name: Windows Build and Release
 
+permissions:
+  contents: write
+
 on:
   push:
     branches:
@@ -38,12 +41,11 @@ jobs:
             -lraylib -lopengl32 -lgdi32 -lwinmm
 
       - name: Prepare artifact directory
-        shell: pwsh
         run: |
-          New-Item -ItemType Directory -Force dist\artifact | Out-Null
-          Copy-Item tictactoe.exe dist\artifact\
-          Copy-Item C:\msys64\mingw64\bin\libraylib.dll dist\artifact\
-          Copy-Item README.md dist\artifact\
+          mkdir -p dist/artifact
+          cp tictactoe.exe dist/artifact/
+          cp /mingw64/bin/libraylib.dll dist/artifact/
+          cp README.md dist/artifact/
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
