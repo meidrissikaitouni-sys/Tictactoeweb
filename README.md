@@ -62,7 +62,7 @@ Le workflow GitHub va compiler le jeu, creer une archive ZIP Windows, puis publi
 
 - telecharger le ZIP depuis la page Releases GitHub
 - extraire le contenu dans un dossier
-- conserver `tictactoe.exe` et `libraylib.dll` dans le meme dossier
+- conserver tictactoe.exe, libraylib.dll et glfw3.dll dans le meme dossier
 - lancer `tictactoe.exe`
 
 ## Fichiers sources
@@ -78,4 +78,5 @@ Le package Windows distribue contient :
 
 - `tictactoe.exe`
 - `libraylib.dll`
+- `glfw3.dll`
 - `README.md`

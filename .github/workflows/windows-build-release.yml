@@ -45,6 +45,7 @@ jobs:
           mkdir -p dist/artifact
           cp tictactoe.exe dist/artifact/
           cp /mingw64/bin/libraylib.dll dist/artifact/
+          cp /mingw64/bin/glfw3.dll dist/artifact/
           cp README.md dist/artifact/
 
       - name: Upload build artifact

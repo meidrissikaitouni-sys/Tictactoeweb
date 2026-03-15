@@ -33,6 +33,7 @@ gcc -Wall -Wextra -std=c11 -O2 `
     -lraylib -lopengl32 -lgdi32 -lwinmm
 
 Copy-Item "$mingwBin\libraylib.dll" $bundleRoot
+Copy-Item "$mingwBin\glfw3.dll" $bundleRoot
 Copy-Item "$projectRoot\README.md" $bundleRoot
 
 Compress-Archive -Path "$bundleRoot\*" -DestinationPath $zipPath -Force
