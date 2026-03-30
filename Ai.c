@@ -155,7 +155,7 @@ Move ai_get_random_move(const Game *game)
         for (int c = 0; c < BOARD_SIZE; c++)
             if (game->board[r][c] == CELL_EMPTY) {
                 moves[count].row = r;
-                moves[count].col = c;
+                moves[count].col = c;   
                 count++;
             }
 
